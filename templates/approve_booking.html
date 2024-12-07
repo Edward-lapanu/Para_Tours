@@ -1,0 +1,17 @@
+<!-- approve_booking.html -->
+{% extends 'base.html' %}
+
+{% block title %}Approve Booking{% endblock %}
+
+{% block content %}
+    <h1>Approve Booking for {{ booking.resort.name }}</h1>
+    <p><strong>User:</strong> {{ booking.user.username }}</p>
+    <p><strong>Check-in Date:</strong> {{ booking.check_in_date }}</p>
+    <p><strong>Check-out Date:</strong> {{ booking.check_out_date }}</p>
+    <p><strong>Total Price:</strong> ${{ booking.total_price }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">Approve Booking</button>
+    </form>
+{% endblock %}

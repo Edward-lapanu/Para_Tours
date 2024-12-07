@@ -1,0 +1,52 @@
+	/* Style the section for the registration form */
+    .registration-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 50px auto; /* Adds spacing around the form */
+        background: #fff;
+        padding: 20px;
+        border: 2px solid #007bff; /* Blue border */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    }/* Adjust content alignment inside the container */
+    .registration-container h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    /* Style form inputs */
+    .registration-container .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .registration-container .form-group label {
+        font-size: 14px;
+        color: #555;
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .registration-container .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    /* Style submit button */
+    .registration-container .form-control.btn {
+        width: 100%;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .registration-container .form-control.btn:hover {
+        background: #0056b3;
+    }

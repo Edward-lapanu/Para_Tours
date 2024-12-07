@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Client Dashboard - My Bookings
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Welcome, {{ user.username }}</h1>
+
+<!-- My Bookings Section -->
+<section id="my-bookings" class="mb-5">
+  <h2>My Bookings</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Resort</th>
+        <th>Check-In</th>
+        <th>Check-Out</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ booking.resort.name }}</td>
+        <td>{{ booking.check_in_date }}</td>
+        <td>{{ booking.check_out_date }}</td>
+
+        {% if booking.user == request.user %}
+        <td>
+          <a href="{% url 'perl_app:booking_cancel' booking.pk %}">Cancel</a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

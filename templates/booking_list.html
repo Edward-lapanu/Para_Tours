@@ -1,0 +1,39 @@
+<!-- booking_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Bookings{% endblock %}
+
+{% block content %}
+    <h1>Bookings</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Resort</th>
+                <th>User</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.resort.name }}</td>
+                    <td>{{ booking.user.username }}</td>
+                    <td>{{ booking.check_in_date }}</td>
+                    <td>{{ booking.check_out_date }}</td>
+                    <td>${{ booking.total_price }}</td>
+                    <td>{{ booking.is_approved|yesno:"Approved,Pending" }}</td>
+                    <td>
+                        {% if not booking.is_approved %}
+                            <a href="{% url 'perl_app:approve_booking' booking.pk %}" class="btn btn-success">Approve</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

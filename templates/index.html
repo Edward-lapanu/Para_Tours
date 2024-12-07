@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home - Tour Application
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <!-- Welcome Section -->
+  <div class="text-center mb-4">
+    <h1>Welcome to Para Tours</h1>
+    <p class="lead">Discover and book the best resorts in Marsabit!</p>
+  </div>
+
+  <!-- Search Section -->
+  <div class="my-4">
+    <form method="GET" action="">
+      <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Search for resorts..." value="{{ request.GET.search }}">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Resorts List -->
+  <div class="row">
+    {% for resort in resorts %}
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img src="{{ resort.image.url }}" class="card-img-top" alt="{{ resort.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ resort.name }}</h5>
+          <p class="card-text">{{ resort.location }}</p>
+          <p class="text-muted">From KES {{ resort.price_per_night }}</p>
+          <a href="{% url 'perl_app:book_resort' %}" class="btn btn-success btn-sm">Book</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center">No resorts found. Try adjusting your search.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+

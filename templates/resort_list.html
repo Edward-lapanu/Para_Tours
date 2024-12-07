@@ -1,0 +1,25 @@
+<!-- resort_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Resort List{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Manage Resorts</h1>
+    <a href="{% url 'perl_app:resort_create' %}" class="btn btn-primary mb-3">Add New Resort</a>
+    <div class="row">
+        {% for resort in resorts %}
+    <div>
+        <h3>{{ resort.name }}</h3>
+        <p>{{ resort.description }}</p>
+
+        {% if resort.owner == request.user or can_edit_any_resort %}
+        <a href="{% url 'perl_app:resort_edit' resort.pk %}">Edit Resort</a>
+        {% endif %}
+        
+        {% if resort.owner == request.user or can_edit_any_resort %}
+            <a href="{% url 'perl_app:resort_delete' resort.pk %}">Delete Resort</a>
+        {% endif %}
+    </div>
+{% endfor %}
+    </div>
+{% endblock %}

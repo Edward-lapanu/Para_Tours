@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Cancel Booking{% endblock %}
+
+{% block content %}
+<h1>Cancel Booking</h1>
+<p>Are you sure you want to cancel the booking for <strong>{{ booking.resort.name }}</strong>?</p>
+<p>Check-In: {{ booking.check_in }} | Check-Out: {{ booking.check_out }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm Cancellation</button>
+    <a href="{% url 'perl_app:client_dashboard' %}" class="btn btn-secondary">Go Back</a>
+</form>
+{% endblock %}

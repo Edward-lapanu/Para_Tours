@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login page{% endblock %}
+
+{% block content %}
+<div class="login-box" >
+	<div class="login-header">Login</div>
+	<div class="login-body">
+		<form method = "POST" class="form-group">
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{ request.GET.next }}">
+			<label>Username</label>
+			<input type="text" class="form-control"  value="{{ request.POST.username|default:'' }}" name="username">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password">
+			<input type="checkbox" value="checked"><b>Remember</b>
+			<input type="submit"  value="Login" class="form-control btn btn-success" name="login">
+			<br>
+			<button id="register" name="register" class="form-control btn btn-primary" ><a href="{% url 'accounts:register' %}"></a>Create Account</button>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

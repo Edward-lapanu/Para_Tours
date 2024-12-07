@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Admin Dashboard - Admin Panel
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-center text-primary">Welcome, Admin</h1>
+
+<!-- Overview Section -->
+<section id="overview" class="mb-5">
+  <h2 class="text-primary mb-4">Overview</h2>
+  <div class="row g-4">
+    <!-- Card for Total Resorts -->
+    <div class="col-md-3">
+      <div class="card text-white bg-primary shadow-lg rounded-lg hover-shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Resorts</h5>
+          <p class="card-text fs-4">{{ total_resorts }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Card for Total Bookings -->
+    <div class="col-md-3">
+      <div class="card text-white bg-success shadow-lg rounded-lg hover-shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Bookings</h5>
+          <p class="card-text fs-4">{{ total_bookings }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card for Pending Bookings -->
+    <div class="col-md-3">
+      <div class="card text-white bg-warning shadow-lg rounded-lg hover-shadow">
+        <div class="card-body">
+          <h5 class="card-title">Pending Bookings</h5>
+          <p class="card-text fs-4">{{ pending_bookings }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card for Users -->
+    <div class="col-md-3">
+      <div class="card text-white bg-danger shadow-lg rounded-lg hover-shadow">
+        <div class="card-body">
+          <h5 class="card-title">Users</h5>
+          <p class="card-text fs-4">{{ users_count }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Manage Resorts Section -->
+<section id="manage-resorts" class="mb-5">
+  <h2 class="text-primary mb-4">Manage Resorts</h2>
+  <div class="d-flex justify-content-between mb-3">
+    <a href="{% url 'perl_app:resort_create' %}" class="btn btn-primary">Add New Resort</a>
+    <a href="{% url 'perl_app:resort_list' %}" class="btn btn-success">View Resorts</a>
+  </div>
+  <table class="table table-striped table-bordered rounded-lg">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Resort Name</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for resort in resorts %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ resort.name }}</td>
+        <td>{{ resort.location }}</td>
+        <td>
+          <a href="{% url 'perl_app:resort_edit' resort.id %}" class="btn btn-sm btn-primary">Edit</a>
+          <a href="{% url 'perl_app:resort_delete' resort.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this resort?');">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<!-- Manage Bookings Section -->
+<section id="manage-bookings" class="mb-5">
+  <h2 class="text-primary mb-4">Manage Bookings</h2>
+  <table class="table table-striped table-bordered rounded-lg">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>User</th>
+        <th>Resort</th>
+        <th>Check-In</th>
+        <th>Check-Out</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ booking.user }}</td>
+        <td>{{ booking.resort.name }}</td>
+        <td>{{ booking.check_in_date }}</td>
+        <td>{{ booking.check_out_date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
+
+
+

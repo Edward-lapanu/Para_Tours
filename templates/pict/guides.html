@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Tour Guides- Meet Our Team{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Meet Our Team</h1>
+        <div class="row">
+            {% for member in guide %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ member.photo.url }}" class="card-img-top" alt="{{ member.first_name }} {{ member.last_name }}" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ member.first_name }} {{ member.last_name }}</h5>
+                        <p class="card-text"><strong>Designation:</strong> {{ member.designation }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
