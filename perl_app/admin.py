@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Resort, Booking
+from .models import Resort, Booking, Message
 from django.contrib.auth.models import User 
 #Registering my models
 @admin.register(Resort)
@@ -13,3 +13,8 @@ class BookingAdmin(admin.ModelAdmin):
     search_fields = ('resort__name', 'user__username')
 
 
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('user', 'content', 'created_at')
+    search_fields = ('user__username', 'content')
+    list_filter = ('created_at',)

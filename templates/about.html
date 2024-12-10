@@ -1,17 +1,67 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
 About Us - Tour Application
 {% endblock %}
 
 {% block content %}
 <div class="container my-5">
-  <h1 class="text-center mb-4">About Us</h1>
-  <p class="lead">
-    Welcome to Explore Resorts! Our mission is to connect travelers with the finest resorts in the region, making travel planning simple, efficient, and enjoyable.
-  </p>
-  <p>
-    With years of experience in the tourism industry, we pride ourselves on providing top-notch services that cater to your every need. Whether you're planning a family vacation, a romantic getaway, or a business trip, we're here to help.
-  </p>
+   <!-- Welcome Section -->
+   <div class="text-center mb-4">
+    <section id="hero">
+
+      <img src="{% static 'assets/img/Game_drive/about.jpg' %}" alt="" data-aos="fade-in">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>About Us</h2>
+            <p class="lead">
+              Welcome to Explore Resorts!<br>
+               Our mission is to connect travelers with the finest resorts in the region, making travel planning simple, efficient, and enjoyable.
+            </p>
+            <p>
+              With years of experience in the tourism industry, we pride ourselves on providing top-notch services that cater to your every need.<br>
+               Whether you're planning a family vacation, a romantic getaway, or a business trip, we're here to help.
+            </p>
+            <a href="{% url 'perl_app:book_resort' %}" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+    </section> <!-- /Hero Section -->
+  </div>
+  <h1 class="text-center mb-4">Explore our collection of wildlife pictures</h1>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Travel on comfortable vihicle</h5>
+          <img src="{% static 'assets/img/Game_drive/game1.jpg' %}" alt="support_img" width="300px" height="200px">
+          <p class="card-text"><i>Bufallos</i></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Take your pictures at close range</h5>
+          <img src="{% static 'assets/img/travel-assistance.jpeg' %}" alt="support_img" width="300px" height="200px">
+          <p class="card-text"><i>relaxing lioness</i></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Rare to find speices</h5>
+        <img src="{% static 'assets/img/Game_drive/game6.jpg' %}" alt="support_img" width="300px" height="200px">
+          <p class="card-text"><i>Gravys Zebra</i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</d
+  
 </div>
 {% endblock %}

@@ -1,18 +1,36 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
 Services - Tour Application
 {% endblock %}
 
 {% block content %}
 <div class="container my-5">
-  <h1 class="text-center mb-4">Our Services</h1>
+   <!-- Welcome Section -->
+   <div class="text-center mb-4">
+    <section id="hero">
+
+      <img src="{% static 'assets/img/Game_drive/about.jpg' %}" alt="" data-aos="fade-in">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>Our Services</h2>
+            <p>Easily book rooms in the best resorts in your area.. </p>
+            <a href="{% url 'perl_app:book_resort' %}" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+    </section> <!-- /Hero Section -->
+  <h1 class="text-center mb-4"></h1>
   <div class="row g-4">
     <div class="col-md-4">
       <div class="card h-100">
         <div class="card-body text-center">
-          <h5 class="card-title">Resort Booking</h5>
-          <p class="card-text">Easily book rooms in the best resorts in your area.</p>
+          <h5 class="card-title">Reserve room of your choice</h5>
+          <img src="{% static 'assets/img/explore-tour-3.jpg' %}" alt="support_img" width="300px" height="200px">
+          <p class="card-text">We help you connect with best resort</p>
         </div>
       </div>
     </div>
@@ -20,6 +38,7 @@ Services - Tour Application
       <div class="card h-100">
         <div class="card-body text-center">
           <h5 class="card-title">Travel Assistance</h5>
+          <img src="{% static 'assets/img/travel-assistance.jpeg' %}" alt="support_img" width="300px" height="200px">
           <p class="card-text">We help you plan your trips with customized travel packages.</p>
         </div>
       </div>
@@ -28,6 +47,7 @@ Services - Tour Application
       <div class="card h-100">
         <div class="card-body text-center">
           <h5 class="card-title">Customer Support</h5>
+        <img src="{% static 'assets/img/customer-support.jpg' %}" alt="support_img" width="300px" height="200px">
           <p class="card-text">24/7 support to ensure your experience is smooth and enjoyable.</p>
         </div>
       </div>

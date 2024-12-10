@@ -45,5 +45,11 @@ class Booking(models.Model):
         return self.resort.price_per_night * number_of_nights
 
 
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"Message from {self.user.username} at {self.created_at}"
 

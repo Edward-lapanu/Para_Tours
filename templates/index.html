@@ -8,8 +8,21 @@ Home - Tour Application
 <div class="container my-5">
   <!-- Welcome Section -->
   <div class="text-center mb-4">
-    <h1>Welcome to Para Tours</h1>
-    <p class="lead">Discover and book the best resorts in Marsabit!</p>
+    <section id="hero">
+
+      <img src="{% static 'assets/img/hero_6_1.jpg' %}" alt="" data-aos="fade-in">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>Welcome to Para Tours</h2>
+            <p>Discover and book the best resorts in Marsabit</p>
+            <a href="{% url 'perl_app:book_resort' %}" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+    </section> <!-- /Hero Section -->
   </div>
 
   <!-- Search Section -->

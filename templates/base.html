@@ -35,7 +35,7 @@
   
       <a href="{% url 'perl_app:index' %}" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <img src="{% static 'assets/img/Logo.png' %}" alt="Para_Tours" width='50px' height='50px'> 
         <h1 class="sitename" style="color: white;">Para Tours</h1>
       </a>
   
@@ -47,23 +47,24 @@
   
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{% url 'perl_app:index' %}" class="active">Home</a></li>
-          <li><a href="{% url 'perl_app:about' %}">About</a></li>
-          <li><a href="{% url 'perl_app:services' %}">Services</a></li>
-          <li><a href="{% url 'pictar:guides' %}">Tour Guides</a></li>
-          <li><a href="{% url 'perl_app:contact' %}">Contact</a></li>
-  
+          <li><a href="{% url 'perl_app:index' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+          <li><a href="{% url 'perl_app:about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a></li>
+          <li><a href="{% url 'perl_app:services' %}" class="{% if request.path == '/services/' %}active{% endif %}">Services</a></li>
+          <li><a href="{% url 'pictar:guides' %}" class="{% if request.path == '/guides/' %}active{% endif %}">Tour Guides</a></li>
+          <li><a href="{% url 'perl_app:contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
+      
           <li class="dropdown">
             <a href="#"><span>Manage your bookings</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="{% url 'perl_app:dashboard' %}">Dashboard</a></li>
-              <li><a href="{% url 'perl_app:book_resort' %}">Book</a></li>
-              <li><a href="{% url 'perl_app:resort_list' %}">Resorts List</a></li>
+              <li><a href="{% url 'perl_app:dashboard' %}" class="{% if request.path == '/dashboard/' %}active{% endif %}">Dashboard</a></li>
+              <li><a href="{% url 'perl_app:book_resort' %}" class="{% if request.path == '/book_resort/' %}active{% endif %}">Book</a></li>
+              <li><a href="{% url 'perl_app:resort_list' %}" class="{% if request.path == '/resort_list/' %}active{% endif %}">Resorts List</a></li>
               <li><a href="#">Resorts Details</a></li>
             </ul>
           </li>
         </ul>
       </nav>
+      
   
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </div>

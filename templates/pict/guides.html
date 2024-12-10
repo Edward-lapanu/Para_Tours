@@ -4,8 +4,24 @@
 
 {% block content %}
     <div class="container my-5">
-        <h1 class="text-center mb-4">Meet Our Team</h1>
-        <div class="row">
+        <div class="text-center mb-4">
+            <section id="hero">
+        
+              <img src="{% static 'assets/img/about_guide.jpg' %}" alt="" data-aos="fade-in">
+        
+              <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                    <h2>Meet Our Team</h2>
+                    <p><strong>We have a team of experienced professionals to take you to your destination</strong> </p>
+                    <a href="{% url 'perl_app:book_resort' %}" class="btn-get-started">Get Started</a>
+                  </div>
+                </div>
+              </div>
+        
+            </section> <!-- /Hero Section -->
+          <h1 class="text-center mb-4"></h1>
+          <div class="row g-4">
             {% for member in guide %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">

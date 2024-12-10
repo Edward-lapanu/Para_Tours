@@ -1,19 +1,18 @@
 # views.py
 from django.contrib.auth.models import User 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Resort, Booking
+from .models import Resort, Booking, Message
 from .forms import ResortForm, BookingForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required,permission_required
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView,DeleteView
-from .models import Resort
 from .forms import ResortForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-
+from django.contrib.auth import authenticate
 
 #My views
 def index(request):
@@ -31,8 +30,31 @@ def index(request):
 
 def about(request):
     return render(request, 'about.html')
+from django.contrib import messages  # Import messages
+
+@login_required
 def contact(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        message_content = request.POST.get('message')
+
+        # Authenticate the user
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            # Debugging: Log user and content before saving
+            print(f"DEBUG: Saving message for user {user.username} with content '{message_content}'")
+            # Save the message to the database
+            Message.objects.create(user=user, content=message_content)
+            messages.success(request, 'Message sent successfully!')  # Set success message
+            return redirect('perl_app:dashboard')  # Redirect to dashboard
+        else:
+            messages.error(request, 'Invalid password.')  # Set error message
+            return render(request, 'contact.html', {'error': 'Invalid password.'})
+
+    # If it's not POST, just render the contact page
     return render(request, 'contact.html')
+
 def services(request):
     return render(request, 'services.html')
 def resort_edit(request):
@@ -65,6 +87,9 @@ def dashboard(request):
         users_count = User.objects.count()
         resorts = Resort.objects.all()
         bookings = Booking.objects.filter(is_approved=True)
+        #fetch all messages
+        messages_list = Message.objects.all()
+        print("DEBUG: Messages passed to dashboard", messages_list)  # Print to console
     
         return render(request, 'dashboard.html', {
             'total_resorts': total_resorts,
@@ -74,6 +99,8 @@ def dashboard(request):
             'users_count': users_count,
             'resorts': resorts,
             'bookings': bookings,
+            'messages': messages_list,  # Pass the actual messages
+
         })
     else:  # Client dashboard
         bookings = Booking.objects.filter(user=request.user)
